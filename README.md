@@ -1,6 +1,7 @@
 # serverinstaller
 Default settings for my servers
 
+
 ## Borg Backup
 1. Repo und Passphrase erstellen
 
@@ -18,3 +19,19 @@ sudo borg create --stats --progress --compression lz4 --exclude /proc --exclude 
 Systemverzeichnisse: Virtuelle Dateisysteme wie /proc, /sys, /dev, /run, /mnt, /media, und /lost+found, da sie dynamische Daten enthalten, die bei jedem Start neu generiert werden.
 Temporäre Dateien und Verzeichnisse: /tmp, /var/tmp, und temporäre Dateien in Benutzerverzeichnissen.
 Cache-Verzeichnisse: /var/cache, da sie Cache-Daten enthalten, die regeneriert werden können.
+
+
+## Timeshift Backup / Snapshot
+
+sudo apt install timeshift -y
+sudo timeshift --create --comments "A new backup" --tags D
+
+--tags D stands for Daily Backup
+
+--tags W stands for Weekly Backup
+
+--tags M stands for Monthly Backup
+
+--tags O stands for On-demand Backup
+
+sudo timeshift --restore
