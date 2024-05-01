@@ -19,8 +19,8 @@ sudo apt install -y vim nano git wget curl unzip cron gawk
 echo "sudo apt update && sudo apt upgrade -y" > ./update.sh;
 
 # Automatisches Update
-if! crontab -l | grep -q "sh ./update.sh"; then
-    (crontab -l ; echo "0 4 * * * sh ./update.sh >/dev/null 2>&1") | crontab -
+if! crontab -l | grep -q "sh./update.sh"; then
+    (crontab -l ; echo "0 4 * * * sh./update.sh >/dev/null 2>&1") | crontab -
     echo "Cronjob wurde hinzugefügt."
 else
     echo "Cronjob existiert bereits."
