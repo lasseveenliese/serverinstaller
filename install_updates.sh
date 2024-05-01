@@ -8,11 +8,14 @@ else
     exit 1
 fi
 
+# Updates
+sudo apt update
+
 # Für Timeshift vorm Update hinzufügen
+sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:teejee2008/timeshift
 
-# Updates und Upgrades
-sudo apt update
+# Upgrades
 sudo apt upgrade -y
 
 # Software installieren
