@@ -1,23 +1,14 @@
+#!/bin/bash
+set -e
+
+# Überprüfen, ob das Skript mit Bash ausgeführt wird
 if [ -n "$BASH_VERSION" ]; then
     echo "Das Skript wird mit Bash ausgeführt."
     # Führen Sie hier die Befehle aus, die spezifisch für Bash sind
 else
     echo "Das Skript wird nicht mit Bash ausgeführt. Bitte führen Sie es mit Bash aus."
-    # Optional: Beenden Sie das Skript oder führen Sie alternative Befehle aus
     exit 1
 fi
-
-# Dateien erstellen
-echo "apt update && apt upgrade -y" > update.sh
-echo "Update Skript erstellt."
-
-
-
-
-
-
-
-
 
 # Hier-Document zur Definition des CONTENT ohne Kommentare
 read -r -d '' CONTENT << 'EOF'
@@ -46,10 +37,6 @@ HISTFILESIZE=999999
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -70,9 +57,6 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
         color_prompt=yes
     else
         color_prompt=
@@ -99,16 +83,10 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -120,59 +98,48 @@ alias l='ls -CF'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+   . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
+# enable programmable completion features
+if! shopt -oq posix; then
  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
+   . /usr/share/bash-completion/bash_completion
  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+   . /etc/bash_completion
  fi
 fi
 EOF
 
 # Schreiben Sie den Inhalt in die Datei ~/.bashrc
-echo "$CONTENT" > ~/.bashrc
-
-
-
-
-
+printf "%s" "$CONTENT" > ~/.bashrc
 
 # Programme installieren
 if apt update >/dev/null; then
-    echo "Update erfolgreich."
+    printf "Update erfolgreich.\n"
 else
-    echo "Fehler beim Update."
+    printf "Fehler beim Update.\n"
 fi
 
 if apt upgrade -y >/dev/null; then
-    echo "Upgrade erfolgreich."
+    printf "Upgrade erfolgreich.\n"
 else
-    echo "Fehler beim Upgrade."
+    printf "Fehler beim Upgrade.\n"
 fi
 
-if apt install -y vim nano git wget curl unzip cron  >/dev/null; then
-    echo "Installation der Programme erfolgreich."
+if apt install -y vim nano git wget curl unzip cron >/dev/null; then
+    printf "Installation der Programme erfolgreich.\n"
 else
-    echo "Fehler bei der Installation der Programme."
+    printf "Fehler bei der Installation der Programme.\n"
 fi
 
 # Automatisches Update
 # Überprüfe, ob der Cronjob bereits existiert
-if ! crontab -l | grep -q "sh ./update.sh"; then
+if! crontab -l | grep -q "sh./update.sh"; then
     # Füge den Cronjob hinzu
-    (crontab -l ; echo "0 4 * * * sh ./update.sh >/dev/null 2>&1") | crontab -
-    echo "Cronjob wurde hinzugefügt."
+    (crontab -l ; echo "0 4 * * * sh./update.sh >/dev/null 2>&1") | crontab -
+    printf "Cronjob wurde hinzugefügt.\n"
 else
-    echo "Cronjob existiert bereits."
+    printf "Cronjob existiert bereits.\n"
 fi
