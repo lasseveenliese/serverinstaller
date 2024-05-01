@@ -13,9 +13,7 @@ sudo apt update >/dev/null
 sudo apt upgrade -y >/dev/null
 
 # gawk installieren für cronjob Skript
-if! dpkg -l | grep -q gawk; then
-    sudo apt-get install gawk >/dev/null
-fi
+sudo apt-get install gawk >/dev/null
 
 # Update Skript erstellen
 if echo "sudo apt update && sudo apt upgrade -y" > /update.sh; then
