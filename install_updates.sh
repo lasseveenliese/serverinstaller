@@ -13,7 +13,7 @@ sudo apt update
 sudo apt upgrade -y
 
 # Software installieren
-sudo apt install -y vim nano git wget curl unzip cron gawk borgbackup
+sudo apt install -y vim nano git wget curl unzip cron gawk borgbackup timeshift
 
 # Update Skript erstellen
 echo "sudo apt update && sudo apt upgrade -y" > ./update.sh;
