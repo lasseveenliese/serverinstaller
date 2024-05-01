@@ -9,19 +9,19 @@ else
 fi
 
 # Programme installieren
-if apt update >/dev/null; then
+if sudo apt update >/dev/null; then
     echo "Update erfolgreich."
 else
     echo "Fehler beim Update."
 fi
 
-if apt upgrade -y >/dev/null; then
+if sudo apt upgrade -y >/dev/null; then
     echo "Upgrade erfolgreich."
 else
     echo "Fehler beim Upgrade."
 fi
 
-if apt install -y vim nano git wget curl unzip cron gawk >/dev/null; then
+if sudo apt install -y vim nano git wget curl unzip cron gawk >/dev/null; then
     echo "Installation der Programme erfolgreich."
 else
     echo "Fehler bei der Installation der Programme."
