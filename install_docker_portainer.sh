@@ -9,17 +9,8 @@ else
 fi
 
 # Programme installieren
-if sudo apt update >/dev/null; then
-    echo "Update erfolgreich."
-else
-    echo "Fehler beim Update."
-fi
-
-if sudo apt upgrade -y >/dev/null; then
-    echo "Upgrade erfolgreich."
-else
-    echo "Fehler beim Upgrade."
-fi
+sudo apt update
+sudo apt upgrade -y
 
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
