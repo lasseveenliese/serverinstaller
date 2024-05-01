@@ -9,19 +9,14 @@ else
 fi
 
 # Updates und Upgrades
-sudo apt update >/dev/null
-sudo apt upgrade -y >/dev/null
+sudo apt update
+sudo apt upgrade -y
 
 # gawk installieren für cronjob Skript
-sudo apt-get install gawk >/dev/null
+sudo apt-get install gawk -y
 
 # Update Skript erstellen
-if echo "sudo apt update && sudo apt upgrade -y" > /update.sh; then
-    echo "Update Skript erstellt."
-else
-    echo "Das Update Skript konnte nicht erstellt werden."
-    exit 1
-fi
+sudo echo "sudo apt update && sudo apt upgrade -y" > /update.sh;
 
 # Automatisches Update
 if! crontab -l | grep -q "sh /update.sh"; then
