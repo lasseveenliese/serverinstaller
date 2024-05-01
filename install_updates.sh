@@ -8,6 +8,9 @@ else
     exit 1
 fi
 
+# Für Timeshift vorm Update hinzufügen
+sudo add-apt-repository -y ppa:teejee2008/timeshift
+
 # Updates und Upgrades
 sudo apt update
 sudo apt upgrade -y
