@@ -9,20 +9,7 @@ else
 fi
 
 # Programme installieren
-if sudo apt update >/dev/null; then
-    echo "Update erfolgreich."
-else
-    echo "Fehler beim Update."
-fi
+sudo apt update
+sudo apt upgrade -y
 
-if sudo apt upgrade -y >/dev/null; then
-    echo "Upgrade erfolgreich."
-else
-    echo "Fehler beim Upgrade."
-fi
-
-if sudo apt install -y vim nano git wget curl unzip cron gawk >/dev/null; then
-    echo "Installation der Programme erfolgreich."
-else
-    echo "Fehler bei der Installation der Programme."
-fi
+sudo apt install -y vim nano git wget curl unzip cron gawk
