@@ -12,8 +12,8 @@ fi
 sudo apt update
 sudo apt upgrade -y
 
-# gawk installieren für cronjob Skript
-sudo apt install -y cron gawk
+# Software installieren
+sudo apt install -y vim nano git wget curl unzip cron gawk
 
 # Update Skript erstellen
 echo "sudo apt update && sudo apt upgrade -y" > ./update.sh;
