@@ -24,7 +24,7 @@ Cache-Verzeichnisse: /var/cache, da sie Cache-Daten enthalten, die regeneriert w
 ## Timeshift Backup / Snapshot
 
 sudo apt install timeshift -y
-sudo timeshift --create --comments "A new backup" --tags D
+sudo timeshift --create --comments "A new backup" --tags O
 
 --tags D stands for Daily Backup
 
