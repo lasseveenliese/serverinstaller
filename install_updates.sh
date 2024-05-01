@@ -12,6 +12,8 @@ fi
 sudo apt update
 
 # Für Timeshift vorm Update hinzufügen
+sudo apt install -y python3
+sudo apt-get upgrade python3
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository -y ppa:teejee2008/timeshift
 
