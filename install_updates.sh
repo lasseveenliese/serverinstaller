@@ -18,7 +18,7 @@ if! dpkg -l | grep -q gawk; then
 fi
 
 # Update Skript erstellen
-if echo "apt update && apt upgrade -y" > /update.sh; then
+if echo "sudo apt update && sudo apt upgrade -y" > /update.sh; then
     echo "Update Skript erstellt."
 else
     echo "Das Update Skript konnte nicht erstellt werden."
