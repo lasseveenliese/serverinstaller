@@ -8,8 +8,9 @@ else
     exit 1
 fi
 
-# Programme installieren
+# Updates und Upgrades
 sudo apt update
 sudo apt upgrade -y
 
+# Software installieren
 sudo apt install -y vim nano git wget curl unzip cron gawk
